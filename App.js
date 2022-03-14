@@ -18,7 +18,12 @@ export default function App() {
   const [user, setUser] = useState([]);
 
   const CreateData = () => {
-    setCreate([...user, create]);
+    setUser([...user, create]);
+    setUser({
+      name: "",
+      rollNo: "",
+    });
+
     // setCreate(null);
   };
 
@@ -30,7 +35,7 @@ export default function App() {
             style={styles.TextInput}
             placeholder="Name"
             value={create.name}
-            onChangeText={(text) => setCreate({ ...user, name: text })}
+            onChangeText={(text) => setCreate({ ...create, name: text })}
           />
         </View>
         <View style={{ justifyContent: "center", alignItems: "center" }}>
@@ -39,7 +44,7 @@ export default function App() {
             placeholder="Password"
             keyboardType="number-pad"
             value={create.rollNo}
-            onChangeText={(text) => setCreate({ ...user, rollNo: text })}
+            onChangeText={(text) => setCreate({ ...create, rollNo: text })}
             // secureTextEntry={true}
           />
         </View>
@@ -67,7 +72,9 @@ export default function App() {
               borderRadius: 5,
             }}
           >
-            <Text>Name:{user.name}</Text>
+            {user.map((item, index) => (
+              <Text key={index}>Name:{item.name}</Text>
+            ))}
           </View>
         </View>
       </View>
@@ -87,7 +94,7 @@ const styles = StyleSheet.create({
     height: 50,
     marginTop: 20,
     padding: 10,
-    elevation: 5,
+    elevation: 3,
     shadowOpacity: 20,
     borderRadius: 5,
   },
