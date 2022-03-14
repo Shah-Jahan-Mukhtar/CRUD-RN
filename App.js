@@ -19,7 +19,7 @@ export default function App() {
 
   const CreateData = () => {
     setUser([...user, create]);
-    setUser({
+    setCreate({
       name: "",
       rollNo: "",
     });
@@ -72,9 +72,12 @@ export default function App() {
               borderRadius: 5,
             }}
           >
-            {user.map((item, index) => (
-              <Text key={index}>Name:{item.name}</Text>
-            ))}
+            {user.map(
+              (item, index) => (
+                (<Text key={index}>Name:{item.name}</Text>),
+                (<Text key={index}>Name:{item.rollNo}</Text>)
+              )
+            )}
           </View>
         </View>
       </View>
