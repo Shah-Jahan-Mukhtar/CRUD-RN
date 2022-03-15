@@ -16,6 +16,7 @@ export default function App() {
     rollNo: "",
   });
   const [user, setUser] = useState([]);
+  const [edit, setEdit] = useState(false);
 
   const CreateData = () => {
     setUser([...user, create]);
@@ -25,6 +26,11 @@ export default function App() {
     });
 
     // setCreate(null);
+  };
+
+  const EditData = (index) => {
+    setCreate(user[index]);
+    setEdit(true);
   };
 
   return (
@@ -48,12 +54,48 @@ export default function App() {
             // secureTextEntry={true}
           />
         </View>
-        <View style={{ flexDirection: "row" }}>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <TouchableOpacity style={styles.Button} onPress={CreateData}>
-            <Text>Add</Text>
+            <Text
+              style={{
+                fontWeight: "bold",
+
+                fontSize: 15,
+                color: "white",
+              }}
+            >
+              Add
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.Button}>
-            <Text>Delete</Text>
+            <Text
+              style={{
+                fontWeight: "bold",
+
+                fontSize: 15,
+                color: "white",
+              }}
+            >
+              Edit
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.Button}>
+            <Text
+              style={{
+                fontWeight: "bold",
+
+                fontSize: 15,
+                color: "white",
+              }}
+            >
+              Delete
+            </Text>
           </TouchableOpacity>
         </View>
         <View
@@ -102,7 +144,7 @@ const styles = StyleSheet.create({
     width: 70,
     height: 45,
     marginTop: 20,
-    marginLeft: 20,
+    marginRight: 10,
     backgroundColor: "#1E90FF",
     justifyContent: "center",
     alignItems: "center",

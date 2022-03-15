@@ -52,7 +52,7 @@ const Data = (props) => {
                 fontWeight: "bold",
                 marginRight: 25,
                 fontSize: 20,
-                color: "red",
+                color: "black",
               }}
             >
               RollNo:{props.pwd}
