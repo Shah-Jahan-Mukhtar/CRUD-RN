@@ -11,7 +11,7 @@ import {
 import Data from "./Component/Data";
 
 export default function App() {
-  const [Add, setAdd] = useState({
+  const [add, setAdd] = useState({
     name: "",
     rollNo: "",
   });
@@ -20,7 +20,7 @@ export default function App() {
   const [index, setIndex] = useState(null);
   const [item, setItem] = useState();
   const CreateData = () => {
-    setUser([...user, Add]);
+    setUser([...user, add]);
     setAdd({
       name: "",
       rollNo: "",
@@ -37,7 +37,7 @@ export default function App() {
 
   const UpdateData = () => {
     let Edit = user;
-    Edit[index] = Add;
+    Edit[index] = add;
     setUser([...Edit]);
     setisEdit(false);
     setAdd({
@@ -62,8 +62,8 @@ export default function App() {
           <TextInput
             style={styles.TextInput}
             placeholder="Name"
-            value={Add.name}
-            onChangeText={(text) => setAdd({ ...Add, name: text })}
+            value={add.name}
+            onChangeText={(text) => setAdd({ ...add, name: text })}
           />
         </View>
         <View style={{ justifyContent: "center", alignItems: "center" }}>
@@ -71,8 +71,8 @@ export default function App() {
             style={styles.TextInput}
             placeholder="Password"
             keyboardType="number-pad"
-            value={Add.rollNo}
-            onChangeText={(text) => setAdd({ ...Add, rollNo: text })}
+            value={add.rollNo}
+            onChangeText={(text) => setAdd({ ...add, rollNo: text })}
             // secureTextEntry={true}
           />
         </View>
@@ -98,7 +98,7 @@ export default function App() {
           <TouchableOpacity
             style={styles.Button}
             onPress={() => (isEdit ? UpdateData() : CreateData())}
-            disabled={!(Add.name && Add.rollNo)}
+            disabled={!(add.name && add.rollNo)}
           >
             <Text
               style={{
