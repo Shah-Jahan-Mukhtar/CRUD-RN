@@ -72,12 +72,9 @@ export default function App() {
               borderRadius: 5,
             }}
           >
-            {user.map(
-              (item, index) => (
-                (<Text key={index}>Name:{item.name}</Text>),
-                (<Text key={index}>Name:{item.rollNo}</Text>)
-              )
-            )}
+            {user.map((item, index) => (
+              <Data key={index} Name={item.name} pwd={item.rollNo} />
+            ))}
           </View>
         </View>
       </View>
