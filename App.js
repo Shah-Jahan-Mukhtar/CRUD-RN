@@ -111,7 +111,10 @@ export default function App() {
               {isEdit ? "Update" : "Add"}
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.Button} onPress={DeleteData(index)}>
+          <TouchableOpacity
+            style={styles.Button}
+            onPress={() => DeleteData(index)}
+          >
             <Text
               style={{
                 fontWeight: "bold",
@@ -141,8 +144,11 @@ export default function App() {
             }}
           >
             {user.map((item, index) => (
-              <TouchableOpacity onPress={(EditData(index), setItem(item))}>
-                <Data key={index} Name={item.name} pwd={item.rollNo} />
+              <TouchableOpacity
+                key={index}
+                onPress={() => (EditData(index), setItem(item))}
+              >
+                <Data Name={item.name} pwd={item.rollNo} />
               </TouchableOpacity>
             ))}
           </View>
