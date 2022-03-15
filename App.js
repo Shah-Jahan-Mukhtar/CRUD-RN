@@ -11,7 +11,7 @@ import {
 import Data from "./Component/Data";
 
 export default function App() {
-  const [create, setCreate] = useState({
+  const [Add, setAdd] = useState({
     name: "",
     rollNo: "",
   });
@@ -20,8 +20,8 @@ export default function App() {
   const [index, setIndex] = useState(null);
   const [item, setItem] = useState();
   const CreateData = () => {
-    setUser([...user, create]);
-    setCreate({
+    setUser([...user, Add]);
+    setAdd({
       name: "",
       rollNo: "",
     });
@@ -30,17 +30,17 @@ export default function App() {
   };
 
   const EditData = (ind) => {
-    setCreate(user[index]);
+    setAdd(user[index]);
     setisEdit(true);
     setIndex(ind);
   };
 
   const UpdateData = () => {
     let Edit = user;
-    Edit[index] = create;
+    Edit[index] = Add;
     setUser([...Edit]);
     setisEdit(false);
-    setCreate({
+    setAdd({
       name: "",
       rollNo: "",
     });
@@ -49,7 +49,7 @@ export default function App() {
   const DeleteData = (ind) => {
     let filterObj = user.filter((item, inde) => inde != ind);
     setUser(filterObj);
-    setCreate({
+    setAdd({
       name: "",
       rollNo: "",
     });
@@ -62,8 +62,8 @@ export default function App() {
           <TextInput
             style={styles.TextInput}
             placeholder="Name"
-            value={create.name}
-            onChangeText={(text) => setCreate({ ...create, name: text })}
+            value={Add.name}
+            onChangeText={(text) => setAdd({ ...Add, name: text })}
           />
         </View>
         <View style={{ justifyContent: "center", alignItems: "center" }}>
@@ -71,8 +71,8 @@ export default function App() {
             style={styles.TextInput}
             placeholder="Password"
             keyboardType="number-pad"
-            value={create.rollNo}
-            onChangeText={(text) => setCreate({ ...create, rollNo: text })}
+            value={Add.rollNo}
+            onChangeText={(text) => setAdd({ ...Add, rollNo: text })}
             // secureTextEntry={true}
           />
         </View>
@@ -98,7 +98,7 @@ export default function App() {
           <TouchableOpacity
             style={styles.Button}
             onPress={() => (isEdit ? UpdateData() : CreateData())}
-            disabled={!(create.name && create.rollNo)}
+            disabled={!(Add.name && Add.rollNo)}
           >
             <Text
               style={{
@@ -114,6 +114,7 @@ export default function App() {
           <TouchableOpacity
             style={styles.Button}
             onPress={() => DeleteData(index)}
+            key={index}
           >
             <Text
               style={{
@@ -146,7 +147,9 @@ export default function App() {
             {user.map((item, index) => (
               <TouchableOpacity
                 key={index}
-                onPress={() => (EditData(index), setItem(item))}
+                onPress={() => {
+                  EditData(index), setItem(item);
+                }}
               >
                 <Data Name={item.name} pwd={item.rollNo} />
               </TouchableOpacity>
