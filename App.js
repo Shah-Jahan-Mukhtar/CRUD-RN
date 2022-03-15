@@ -16,8 +16,9 @@ export default function App() {
     rollNo: "",
   });
   const [user, setUser] = useState([]);
-  const [edit, setEdit] = useState(false);
-
+  const [isEdit, setisEdit] = useState(false);
+  const [index, setIndex] = useState(null);
+  const [item, setItem] = useState();
   const CreateData = () => {
     setUser([...user, create]);
     setCreate({
@@ -28,9 +29,30 @@ export default function App() {
     // setCreate(null);
   };
 
-  const EditData = (index) => {
+  const EditData = (ind) => {
     setCreate(user[index]);
-    setEdit(true);
+    setisEdit(true);
+    setIndex(ind);
+  };
+
+  const UpdateData = () => {
+    let Edit = user;
+    Edit[index] = create;
+    setUser([...Edit]);
+    setisEdit(false);
+    setCreate({
+      name: "",
+      rollNo: "",
+    });
+  };
+
+  const DeleteData = (ind) => {
+    let filterObj = user.filter((item, inde) => inde != ind);
+    setUser(filterObj);
+    setCreate({
+      name: "",
+      rollNo: "",
+    });
   };
 
   return (
@@ -61,7 +83,7 @@ export default function App() {
             alignItems: "center",
           }}
         >
-          <TouchableOpacity style={styles.Button} onPress={CreateData}>
+          {/* <TouchableOpacity style={styles.Button} onPress={CreateData}>
             <Text
               style={{
                 fontWeight: "bold",
@@ -72,8 +94,12 @@ export default function App() {
             >
               Add
             </Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.Button}>
+          </TouchableOpacity> */}
+          <TouchableOpacity
+            style={styles.Button}
+            onPress={() => (isEdit ? UpdateData() : CreateData())}
+            disabled={!(create.name && create.rollNo)}
+          >
             <Text
               style={{
                 fontWeight: "bold",
@@ -82,10 +108,10 @@ export default function App() {
                 color: "white",
               }}
             >
-              Edit
+              {isEdit ? "Update" : "Add"}
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.Button}>
+          <TouchableOpacity style={styles.Button} onPress={DeleteData(index)}>
             <Text
               style={{
                 fontWeight: "bold",
@@ -115,7 +141,9 @@ export default function App() {
             }}
           >
             {user.map((item, index) => (
-              <Data key={index} Name={item.name} pwd={item.rollNo} />
+              <TouchableOpacity onPress={(EditData(index), setItem(item))}>
+                <Data key={index} Name={item.name} pwd={item.rollNo} />
+              </TouchableOpacity>
             ))}
           </View>
         </View>
