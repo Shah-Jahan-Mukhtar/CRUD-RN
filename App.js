@@ -7,8 +7,11 @@ import {
   TextInput,
   SafeAreaView,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import Data from "./Component/Data";
+import Crud from "./Component/Crud";
+// import { ScrollView } from "react-native-web";
 
 export default function App() {
   const [add, setAdd] = useState({
@@ -19,6 +22,7 @@ export default function App() {
   const [isEdit, setisEdit] = useState(false);
   const [index, setIndex] = useState(null);
   const [item, setItem] = useState();
+
   const CreateData = useCallback(() => {
     setUser([...user, add]);
     setAdd({
@@ -31,7 +35,7 @@ export default function App() {
 
   const EditData = useCallback(
     (ind) => {
-      setAdd(user[index]);
+      setAdd(user[ind]);
       setisEdit(true);
       setIndex(ind);
     },
@@ -62,6 +66,7 @@ export default function App() {
   );
 
   return (
+    // <Crud />
     <SafeAreaView style={{ marginTop: 25 }}>
       <View style={styles.container}>
         <View style={{ justifyContent: "center", alignItems: "center" }}>
@@ -104,7 +109,7 @@ export default function App() {
           <TouchableOpacity
             style={styles.Button}
             onPress={() => (isEdit ? UpdateData() : CreateData())}
-            disabled={!(add.name && add.rollNo)}
+            // disabled={!(add.name && add.rollNo)}
           >
             <Text
               style={{
@@ -134,37 +139,22 @@ export default function App() {
             </Text>
           </TouchableOpacity>
         </View>
-        <View
-          style={{
-            alignItems: "center",
-            justifyContent: "center",
-            marginTop: 20,
-          }}
-        >
-          <View
-            style={{
-              width: 300,
-              height: 450,
-              backgroundColor: "#00bfff",
 
-              borderRadius: 5,
-            }}
-          >
-            {user.map((item, index) => (
-              <TouchableOpacity
-                key={index}
-                onPress={() => {
-                  EditData(index), setItem(item);
-                }}
-              >
-                <Text>Name:{item.name}</Text>
-                <Text>Roll No:{item.rollNo}</Text>
+        <ScrollView>
+          {user.map((item, index) => (
+            <TouchableOpacity
+              key={index}
+              onPress={() => {
+                EditData(index), setItem(item);
+              }}
+            >
+              <Text>Name:{item.name}</Text>
+              <Text>Roll No:{item.rollNo}</Text>
 
-                {/* <Data Name={item.name} pwd={item.rollNo} /> */}
-              </TouchableOpacity>
-            ))}
-          </View>
-        </View>
+              {/* <Data Name={item.name} pwd={item.rollNo} /> */}
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
