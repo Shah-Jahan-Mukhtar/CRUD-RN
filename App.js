@@ -94,22 +94,10 @@ export default function App() {
             alignItems: "center",
           }}
         >
-          {/* <TouchableOpacity style={styles.Button} onPress={CreateData}>
-            <Text
-              style={{
-                fontWeight: "bold",
-
-                fontSize: 15,
-                color: "white",
-              }}
-            >
-              Add
-            </Text>
-          </TouchableOpacity> */}
           <TouchableOpacity
             style={styles.Button}
             onPress={() => (isEdit ? UpdateData() : CreateData())}
-            // disabled={!(add.name && add.rollNo)}
+            disabled={!(add.name && add.rollNo)}
           >
             <Text
               style={{
