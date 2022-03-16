@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import {
   StyleSheet,
   Text,
@@ -19,7 +19,7 @@ export default function App() {
   const [isEdit, setisEdit] = useState(false);
   const [index, setIndex] = useState(null);
   const [item, setItem] = useState();
-  const CreateData = () => {
+  const CreateData = useCallback(() => {
     setUser([...user, add]);
     setAdd({
       name: "",
@@ -27,15 +27,18 @@ export default function App() {
     });
 
     // setCreate(null);
-  };
+  }, [add, user]);
 
-  const EditData = (ind) => {
-    setAdd(user[index]);
-    setisEdit(true);
-    setIndex(ind);
-  };
+  const EditData = useCallback(
+    (ind) => {
+      setAdd(user[index]);
+      setisEdit(true);
+      setIndex(ind);
+    },
+    [add, user, index, isEdit]
+  );
 
-  const UpdateData = () => {
+  const UpdateData = useCallback(() => {
     let Edit = user;
     Edit[index] = add;
     setUser([...Edit]);
@@ -44,16 +47,19 @@ export default function App() {
       name: "",
       rollNo: "",
     });
-  };
+  }, [user, add, setUser]);
 
-  const DeleteData = (ind) => {
-    let filterObj = user.filter((item, inde) => inde != ind);
-    setUser(filterObj);
-    setAdd({
-      name: "",
-      rollNo: "",
-    });
-  };
+  const DeleteData = useCallback(
+    (ind) => {
+      let filterObj = user.filter((item, inde) => inde != ind);
+      setUser(filterObj);
+      setAdd({
+        name: "",
+        rollNo: "",
+      });
+    },
+    [add, user, setUser]
+  );
 
   return (
     <SafeAreaView style={{ marginTop: 25 }}>
@@ -151,7 +157,10 @@ export default function App() {
                   EditData(index), setItem(item);
                 }}
               >
-                <Data Name={item.name} pwd={item.rollNo} />
+                <Text>Name:{item.name}</Text>
+                <Text>Roll No:{item.rollNo}</Text>
+
+                {/* <Data Name={item.name} pwd={item.rollNo} /> */}
               </TouchableOpacity>
             ))}
           </View>
