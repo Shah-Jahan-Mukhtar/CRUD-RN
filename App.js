@@ -12,7 +12,6 @@ import {
 import { backgroundColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 import Data from "./Component/Data";
 // import Crud from "./Component/Crud";
-// import { ScrollView } from "react-native-web";
 
 export default function App() {
   const [add, setAdd] = useState({
@@ -30,8 +29,6 @@ export default function App() {
       name: "",
       rollNo: "",
     });
-
-    // setCreate(null);
   }, [add, user]);
 
   const EditData = useCallback(
