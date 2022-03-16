@@ -9,8 +9,9 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
+import { backgroundColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 import Data from "./Component/Data";
-import Crud from "./Component/Crud";
+// import Crud from "./Component/Crud";
 // import { ScrollView } from "react-native-web";
 
 export default function App() {
@@ -66,7 +67,6 @@ export default function App() {
   );
 
   return (
-    // <Crud />
     <SafeAreaView style={{ marginTop: 25 }}>
       <View style={styles.container}>
         <View style={{ justifyContent: "center", alignItems: "center" }}>
@@ -139,22 +139,20 @@ export default function App() {
             </Text>
           </TouchableOpacity>
         </View>
-
-        <ScrollView>
-          {user.map((item, index) => (
-            <TouchableOpacity
-              key={index}
-              onPress={() => {
-                EditData(index), setItem(item);
-              }}
-            >
-              <Text>Name:{item.name}</Text>
-              <Text>Roll No:{item.rollNo}</Text>
-
-              {/* <Data Name={item.name} pwd={item.rollNo} /> */}
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
+        <View style={{ justifyContent: "center", alignItems: "center" }}>
+          <ScrollView style={styles.list}>
+            {user.map((item, index) => (
+              <TouchableOpacity
+                key={index}
+                onPress={() => {
+                  EditData(index), setItem(item);
+                }}
+              >
+                <Data Name={item.name} pwd={item.rollNo} />
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -185,5 +183,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 5,
+  },
+  list: {
+    width: "90%",
+    height: "65%",
+    backgroundColor: "#1E90FF",
+    marginTop: 25,
+    borderRadius: 10,
   },
 });
