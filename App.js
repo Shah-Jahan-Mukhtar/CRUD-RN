@@ -144,6 +144,17 @@ export default function App() {
                 {/* <Icon name="delete" size={25} color="red" /> */}
               </TouchableOpacity>
             ))}
+            {user.map((item, index) => (
+              <TouchableOpacity
+                key={index}
+                onPress={() => {
+                  EditData(index), setItem(item);
+                }}
+              >
+                <Data Name={item.name} pwd={item.rollNo} />
+                {/* <Icon name="delete" size={25} color="red" /> */}
+              </TouchableOpacity>
+            ))}
           </ScrollView>
         </View>
       </View>

@@ -49,7 +49,7 @@ const Data = (props) => {
               RollNo:{props.pwd}
             </Text>
           </View>
-          <Icon name="delete" size={40} color="red" />
+          <Icon name="delete" size={30} color="red" />
         </View>
       </View>
     </SafeAreaView>
