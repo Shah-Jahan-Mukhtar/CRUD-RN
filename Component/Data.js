@@ -1,5 +1,6 @@
 import { View, Text, SafeAreaView } from "react-native";
 import React from "react";
+import Icon from "react-native-vector-icons/MaterialIcons";
 
 const Data = (props) => {
   return (
@@ -48,6 +49,7 @@ const Data = (props) => {
               RollNo:{props.pwd}
             </Text>
           </View>
+          <Icon name="delete" size={40} color="red" />
         </View>
       </View>
     </SafeAreaView>

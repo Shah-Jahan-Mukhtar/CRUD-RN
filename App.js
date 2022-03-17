@@ -9,6 +9,8 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
+import Icon from "react-native-vector-icons/MaterialIcons";
+import { Alert } from "react-native-web";
 import { backgroundColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 import Data from "./Component/Data";
 // import Crud from "./Component/Crud";
@@ -18,7 +20,7 @@ export default function App() {
     name: "",
     rollNo: "",
   });
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState([{}]);
   const [isEdit, setisEdit] = useState(false);
   const [index, setIndex] = useState(null);
   const [item, setItem] = useState();
@@ -30,9 +32,12 @@ export default function App() {
       rollNo: "",
     });
   }, [add, user]);
-
+  // var i = -1;
   const EditData = useCallback(
     (ind) => {
+      // Alert.alert(ind);
+      // i = parseInt(ind);
+      console.log(ind);
       setAdd(user[ind]);
       setisEdit(true);
       setIndex(ind);
@@ -53,7 +58,9 @@ export default function App() {
 
   const DeleteData = useCallback(
     (ind) => {
-      let filterObj = user.filter((item, inde) => inde !== ind);
+      // console.log(i + "i");
+      let filterObj = user.filter((item, inde) => ind != inde);
+
       setUser(filterObj);
       setAdd({
         name: "",
@@ -134,6 +141,7 @@ export default function App() {
                 }}
               >
                 <Data Name={item.name} pwd={item.rollNo} />
+                {/* <Icon name="delete" size={25} color="red" /> */}
               </TouchableOpacity>
             ))}
           </ScrollView>
