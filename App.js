@@ -53,7 +53,7 @@ export default function App() {
 
   const DeleteData = useCallback(
     (ind) => {
-      let filterObj = user.filter((item, inde) => inde != ind);
+      let filterObj = user.filter((item, inde) => inde !== ind);
       setUser(filterObj);
       setAdd({
         name: "",
