@@ -10,14 +10,15 @@ const Data = (props) => {
           justifyContent: "center",
           alignItems: "center",
           marginTop: 10,
+          flexDirection: "row",
         }}
       >
         <View
           style={{
-            width: "90%",
+            width: "80%",
             height: 50,
             backgroundColor: "white",
-            justifyContent: "space-between",
+            justifyContent: "center",
             alignItems: "center",
 
             borderRadius: 5,
@@ -49,7 +50,6 @@ const Data = (props) => {
               RollNo:{props.pwd}
             </Text>
           </View>
-          <Icon name="delete" size={30} color="red" />
         </View>
       </View>
     </SafeAreaView>
