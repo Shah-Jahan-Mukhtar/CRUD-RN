@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  KeyboardAvoidingView,
 } from "react-native";
 import React, { useState, useCallback } from "react";
 import Icon from "react-native-vector-icons/MaterialIcons";
@@ -77,10 +78,11 @@ const Crud2 = () => {
           placeholder="Roll No"
           keyboardType="number-pad"
         />
+
         <View style={{ flexDirection: "row" }}>
           <TouchableOpacity
-            key={index}
             onPress={() => (isEdit ? UpdateUser() : AddUser())}
+            key={index}
             disabled={!(add.name && add.rollno)}
             style={styles.Button}
           >
