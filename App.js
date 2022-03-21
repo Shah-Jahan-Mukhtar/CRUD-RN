@@ -15,7 +15,10 @@ import { Alert } from "react-native-web";
 // import { backgroundColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 import Data from "./Component/Data";
 import Crud from "./Component/Crud";
+<<<<<<< HEAD
 import Crud2 from "./Component/Crud2";
+=======
+>>>>>>> f00b8594793f381161cd7d7f19f26a4d20f11301
 
 export default function App() {
   const [add, setAdd] = useState({
@@ -73,7 +76,11 @@ export default function App() {
   );
 
   return (
+<<<<<<< HEAD
     <Crud2 />
+=======
+    <Crud />
+>>>>>>> f00b8594793f381161cd7d7f19f26a4d20f11301
     // <SafeAreaView style={{ marginTop: 25 }}>
     //   <View style={styles.container}>
     //     <View style={{ justifyContent: "center", alignItems: "center" }}>
