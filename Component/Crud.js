@@ -17,7 +17,7 @@ const Crud = () => {
   const [isEdit, setIsEdit] = useState(false);
   const [index, setIndex] = useState(null);
   const [item, setItem] = useState();
-
+  var chk = false;
   const addUser = useCallback(() => {
     setUsers([...users, user]);
     setUser({
@@ -30,6 +30,7 @@ const Crud = () => {
       setUser(users[indx]);
       setIsEdit(true);
       setIndex(indx);
+      chk = false;
     },
     [user, users, index, isEdit]
   );
@@ -42,16 +43,19 @@ const Crud = () => {
       name: "",
       age: "",
     });
+    chk = false;
   }, [users, user, setUsers]);
   const deleteUser = useCallback(
     (indx) => {
-      let filterObj = users.filter((item, ind) => ind != indx);
-      console.log(filterObj);
+      var filterObj = users.filter((item, ind) => ind != indx);
+
+      // console.log(chk);
       setUsers(filterObj);
       setUser({
         name: "",
         age: "",
       });
+      chk = false;
     },
     [user, users, setUsers]
   );
@@ -61,13 +65,13 @@ const Crud = () => {
       <Text style={style.header}>Crud</Text>
       <TextInput
         style={style.inputS}
-        placeholder="name"
+        placeholder="Name"
         value={user.name}
         onChangeText={(text) => setUser({ ...user, name: text })}
       />
       <TextInput
         style={style.inputS}
-        placeholder="age"
+        placeholder="Age"
         keyboardType="number-pad"
         value={user.age}
         onChangeText={(text) => setUser({ ...user, age: text })}
@@ -87,6 +91,7 @@ const Crud = () => {
 
         <TouchableOpacity
           onPress={() => deleteUser(index)}
+          disabled={!(user.name && user.age)}
           style={style.button}
           key={index}
         >
@@ -101,6 +106,7 @@ const Crud = () => {
             key={index}
             onPress={() => {
               handleEditUser(index), setItem(item);
+              chk = true;
             }}
           >
             <Text>Name : {item.name}</Text>
@@ -114,11 +120,13 @@ const Crud = () => {
 
 const style = StyleSheet.create({
   inputS: {
-    width: "80%",
+    width: "100%",
     padding: 10,
-    backgroundColor: "grey",
+    backgroundColor: "white",
     fontSize: 24,
     margin: 10,
+    elevation: 10,
+    borderRadius: 20,
   },
   header: {
     fontSize: 32,
